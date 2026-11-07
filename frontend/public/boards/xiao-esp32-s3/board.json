@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0",
+  "id": "xiao-esp32-s3",
+  "name": "Seeed Studio XIAO ESP32-S3",
+  "nickname": "XIAO ESP32-S3",
+  "vendor": "Seeed Studio",
+  "mcu": "ESP32-S3R8",
+  "arch": "esp32",
+  "logicVoltage": 3.3,
+  "flashMB": 8,
+  "psramMB": 8,
+  "dimensionsMm": [
+    21,
+    17.8
+  ],
+  "capabilities": [
+    "wifi",
+    "ble5",
+    "usb_cdc",
+    "adc",
+    "pwm",
+    "i2c",
+    "spi",
+    "uart",
+    "deep_sleep"
+  ],
+  "toolchain": {
+    "backendBoardId": "esp32s3",
+    "fqbn": "esp32:esp32:XIAO_ESP32S3",
+    "fallbackFqbn": "esp32:esp32:esp32s3:CDCOnBoot=cdc",
+    "uploadProtocol": "esptool-js",
+    "baudRate": 115200
+  },
+  "images": {
+    "illustration": "board.svg",
+    "photo": "photo.webp",
+    "cover": "cover.webp",
+    "pinoutFront": "pinout-front.webp",
+    "pinoutBack": "pinout-back.webp"
+  },
+  "pinmap": "pinmap.json",
+  "sources": {
+    "photo": "https://files.seeedstudio.com/wiki/SeeedStudio-XIAO-ESP32S3/img/xiaoesp32s3.jpg",
+    "pinout": "https://files.seeedstudio.com/wiki/SeeedStudio-XIAO-ESP32S3/img/XIAO_ESP32-S3_front_pinout.png",
+    "wiki": "https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/"
+  },
+  "license": "board.svg / pinmap.json: MakeFast 自绘（自有）。photo/pinout 为 Seeed 官方 wiki 图片，仅作产品展示，公开发布前请确认 Seeed 素材使用条款。"
+}

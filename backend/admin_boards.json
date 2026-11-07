@@ -1,0 +1,48 @@
+{
+  "overrides": {
+    "esp32cam": {
+      "board_id": "esp32cam",
+      "name": "AI Thinker ESP32-CAM",
+      "fqbn": "esp32:esp32:esp32cam",
+      "description": "AI Thinker ESP32-CAM 开发板（OV2640摄像头）",
+      "platform": "esp32",
+      "flashable": true,
+      "bootloader_addr": 4096,
+      "output_format": "bin",
+      "chip_family": "esp32"
+    },
+    "esp8266-nodemcuv2": {
+      "board_id": "esp8266-nodemcuv2",
+      "name": "ESP-12E",
+      "fqbn": "esp8266:esp8266:nodemcuv2",
+      "description": "NodeMCU 1.0 开发板",
+      "platform": "esp8266",
+      "flashable": true,
+      "bootloader_addr": 4096,
+      "output_format": "bin",
+      "chip_family": "esp8266",
+      "created_at": "2026-05-19T06:07:41.127226+00:00"
+    }
+  },
+  "deleted": [],
+  "order": [
+    "esp32",
+    "esp32wrover",
+    "esp32cam",
+    "nodemcu-32s",
+    "esp32doit-devkit-v1",
+    "esp32s2",
+    "esp32s3",
+    "esp32s3camlcd",
+    "esp32c3",
+    "esp32c6",
+    "esp32h2",
+    "esp8266-generic",
+    "esp8266-d1-mini",
+    "esp8266-nodemcuv2",
+    "esp8266-d1-mini-pro",
+    "arduino-uno",
+    "arduino-mega",
+    "arduino-nano"
+  ]
+}

@@ -1,0 +1,15 @@
+/* /project 旧工作台：套用新设计令牌（浅色、#74B0E1 / #F4C65C / #C0E2F9、大圆角） */
+@import './tokens.css';
+.mf-legacy { font-family: var(--mf-font, system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif); }
+.mf-legacy-header { color: #23384D; }
+.mf-legacy-header .text-white, .mf-legacy-header .text-slate-100, .mf-legacy-header .text-slate-200, .mf-legacy-header .text-slate-300 { color: #23384D !important; }
+.mf-legacy-header .text-slate-400 { color: #5B7189 !important; }
+.mf-legacy-header [class*="bg-slate-8"], .mf-legacy-header [class*="bg-slate-7"], .mf-legacy-header [class*="bg-slate-9"] { background: #EAF5FD !important; border-color: #C0E2F9 !important; }
+.mf-legacy-header select { background: #fff; color: #23384D; border: 2px solid #C0E2F9; border-radius: 12px; }
+.mf-legacy .workbench-save-button { background: #fff; color: #1F5E8E; border: 2px solid #C0E2F9; border-radius: 999px; }
+.mf-legacy .course-steps-panel, .mf-legacy .workbench-step-card, .mf-legacy .debug-panel > div { border-radius: 18px !important; border-color: #C0E2F9 !important; box-shadow: 0 8px 24px rgba(31,94,142,.08) !important; }
+.mf-legacy .course-step--active { background: #EAF5FD; border-color: #74B0E1; }
+.mf-legacy .primary-step-button { border-radius: 999px; background: #F4C65C; border-color: #F4C65C; color: #1A2B3C; font-weight: 700; }
+.mf-legacy .workbench-action-button { border-radius: 999px; border-color: #C0E2F9; color: #1F5E8E; background: #fff; }
+.mf-legacy button.bg-blue-600, .mf-legacy button.bg-blue-500 { background: #74B0E1 !important; }
+.mf-legacy button.bg-emerald-600, .mf-legacy button.bg-green-600 { background: #F4C65C !important; color: #1A2B3C !important; }

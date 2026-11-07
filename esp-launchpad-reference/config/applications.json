@@ -1,0 +1,53 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-01-04",
+  "description": "ESP Launchpad 应用配置文件",
+  "applications": [
+    {
+      "name": "小智amourk08v1.6.2-增量包",
+      "url": "https://music.chenweikang.top/release_1.6.2/xiaozhi_xiaozhi_0x100000_1.6.2.bin",
+      "flashAddress": "0x100000",
+      "value": "xiaozhi-increment",
+      "description": "适用于已安装基础版本用户的增量更新包",
+      "version": "1.6.2",
+      "type": "increment",
+      "category": "xiaozhi",
+      "fileSize": "1.2MB",
+      "releaseDate": "2024-12-15",
+      "changelog": [
+        "修复蓝牙连接稳定性问题",
+        "优化音频播放性能",
+        "新增语音识别功能"
+      ]
+    },
+    {
+      "name": "小智amourk08v1.6.2-全量包",
+      "url": "https://music.chenweikang.top/release_1.6.2/xiaozhi_xiaozhi_0x100000_1.6.2.bin",
+      "flashAddress": "0x100000",
+      "value": "xiaozhi-full",
+      "description": "完整版本，包含所有功能，适用于全新安装",
+      "version": "1.6.2",
+      "type": "full",
+      "category": "xiaozhi",
+      "fileSize": "3.8MB",
+      "releaseDate": "2024-12-15",
+      "changelog": [
+        "完整的小智AI助手功能",
+        "支持多种语音交互模式",
+        "内置音乐播放和网络服务"
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": "xiaozhi",
+      "name": "小智AI助手",
+      "description": "智能语音助手固件"
+    }
+  ],
+  "settings": {
+    "autoSelectLatest": true,
+    "showChangelogInUI": true,
+    "enableVersionCheck": true
+  }
+}

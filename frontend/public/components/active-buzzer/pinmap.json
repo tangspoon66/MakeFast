@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.0",
+  "componentId": "active_buzzer",
+  "units": "svg",
+  "viewBox": [
+    0,
+    0,
+    120,
+    140
+  ],
+  "image": "module.svg",
+  "pins": [
+    {
+      "id": "S",
+      "role": "signal",
+      "x": 36,
+      "y": 132,
+      "accepts": [
+        "digital_out"
+      ]
+    },
+    {
+      "id": "VCC",
+      "role": "power",
+      "x": 60,
+      "y": 132,
+      "accepts": [
+        "power_3v3",
+        "power_5v"
+      ]
+    },
+    {
+      "id": "GND",
+      "role": "gnd",
+      "x": 84,
+      "y": 132,
+      "accepts": [
+        "gnd"
+      ]
+    }
+  ]
+}

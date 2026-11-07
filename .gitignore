@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+__pycache__/
+
+# Build outputs
+dist/
+build/
+*.egg-info/
+
+# Environment
+.env
+.env.local
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Runtime data and uploaded assets
+data/
+backend/data/
+template_storage/
+backend/template_storage/
+firmware_storage/
+backend/firmware_storage/
+
+# Testing
+coverage/
+.pytest_cache/
+
+# Temporary
+temp/
+*.tmp
+frontend/test-results/
+frontend/playwright-report/
+frontend/audit/

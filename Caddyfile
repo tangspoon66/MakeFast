@@ -1,0 +1,8 @@
+makefast.cn {
+	encode zstd gzip
+
+	reverse_proxy nginx:80 {
+		header_up X-Forwarded-Proto {scheme}
+		header_up X-Forwarded-Host {host}
+	}
+}

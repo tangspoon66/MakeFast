@@ -1,0 +1,25 @@
+{
+  "source": "gpt-image-2_5-sunburst_2026-09-25_14-37-29.png",
+  "source_path": "/Users/ken/Downloads/gpt-image-2_5-sunburst_2026-09-25_14-37-29.png",
+  "license_status": "pending_user_confirmation",
+  "derivation": "静态状态裁切自用户提供的多状态参考图；裁切图仅作 UI 预览，正式发布前需确认使用权并补透明背景版本。",
+  "generated_assets": {
+    "mascot-clean.png": {
+      "source": "Kuaipao image generation",
+      "license_status": "makefast-generated-pending-project-license",
+      "prompt_purpose": "透明背景的无文字 Agent 角色本体，用于待机和定位提示",
+      "verified": true,
+      "notes": "已检查为 RGBA，四角 alpha=0；不是硬件图片，不用于课程材料或接线。"
+    }
+  },
+  "states": {
+    "standby": "standby.png",
+    "guide": "guide-v2.png",
+    "explain": "explain-v2.png",
+    "listening": "listening.png",
+    "thinking": "thinking.png",
+    "success": "success.png",
+    "warning": "warning-v2.png",
+    "waiting": "listening.png"
+  }
+}

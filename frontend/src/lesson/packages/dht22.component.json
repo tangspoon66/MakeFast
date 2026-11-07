@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "1.0",
+  "id": "dht22",
+  "name": "DHT22 温湿度模块（AM2302）",
+  "category": "sensor",
+  "logicVoltage": [
+    3.3,
+    5
+  ],
+  "capabilities": [
+    "temperature",
+    "humidity"
+  ],
+  "images": {
+    "illustration": "module.svg"
+  },
+  "pinmap": "pinmap.json",
+  "specs": {
+    "tempRangeC": [
+      -40,
+      80
+    ],
+    "tempAccuracyC": 0.5,
+    "humidityRangePct": [
+      0,
+      100
+    ],
+    "humidityAccuracyPct": 2,
+    "minSampleIntervalMs": 2000,
+    "onboardPullup": true
+  },
+  "library": {
+    "name": "DHT sensor library",
+    "vendor": "Adafruit",
+    "include": "DHT.h",
+    "arduinoLibraryManager": "DHT sensor library"
+  },
+  "blocks": [
+    "mf_dht_setup",
+    "mf_dht_read_temp",
+    "mf_dht_read_humi"
+  ],
+  "license": "MakeFast 自绘（自有），不含第三方 GPL 资源。"
+}

@@ -1,0 +1,90 @@
+# MakeFast sprint-status refresh draft (R9)
+# Status: draft — NOT written to user repo
+# Date: 2026-10-10
+# Baseline: R7 epics-and-stories; R8 readiness
+# Rule: new sprint contains ONLY R7 story IDs; conflicting legacy done/review → superseded
+
+meta:
+  phase: "P0-first-lesson-happy-path"
+  milestone_target: "M-P0"
+  note: "Historical BMAD done/review that conflict with NEW are historical only."
+
+superseded_legacy:
+  - id: ST-303
+    title: "首课硬件核验（旧假设）"
+    previous_status: "blocked_or_review"
+    new_status: superseded
+    replaced_by: ["ST-E4-01", "ST-E4-02", "ST-E4-03", "ST-E4-04", "ST-E4-05", "ST-E4-06"]
+  - id: ST-403
+    title: "接线查看器（Wiring Graph SoT）"
+    previous_status: "blocked_or_review"
+    new_status: superseded
+    replaced_by: ["ST-E3-01", "ST-E3-02", "ST-E3-03", "ST-E3-04"]
+  - pattern: "any done/review items encoding assisted→autonomous fade or in-lesson quiz"
+    new_status: superseded
+    reason: "OBS-01 OBS-02 OBS-06"
+
+# Recommended execution order (same sprint or sequential slices)
+slices:
+  - id: S0
+    name: "E1 Catalog"
+    stories: [ST-E1-01, ST-E1-02, ST-E1-03, ST-E1-04]
+    gate: "M7 must pass for slice exit (catalog silent)"
+    owners: ["界面", "功能(session create)"]
+  - id: S1
+    name: "E2 Agent boundary"
+    stories: [ST-E2-01, ST-E2-02]
+    gate: "GUIDING only on workbench; catalog IDLE"
+    owners: ["功能", "界面"]
+  - id: S2
+    name: "E3 Wiring + board.json"
+    stories: [ST-E3-01, ST-E3-02, ST-E3-03]
+    parallel: [ST-E3-04]
+    gate: "no public Wiring Graph naming; validate uses board.json"
+    owners: ["功能", "界面(panel)"]
+  - id: S3
+    name: "E4 Toolchain + phenomenon"
+    stories: [ST-E4-01, ST-E4-02, ST-E4-03, ST-E4-04, ST-E4-05, ST-E4-06]
+    gate: "phenomenon success path works (auto or confirm)"
+    owners: ["功能"]
+  - id: S4
+    name: "E2 wrap + E5 quiz"
+    stories: [ST-E2-03, ST-E2-04, ST-E5-01, ST-E5-02, ST-E5-03, ST-E5-04]
+    gate: "no in-lesson quiz; mainline lock; 3+1 pass rule"
+    owners: ["功能", "界面"]
+
+backlog_p1:
+  - ST-E6-01
+  - ST-E6-02
+
+sprint_board_active:
+  # ONLY R7 IDs — statuses start as todo unless already started by bots
+  ST-E1-01: todo
+  ST-E1-02: todo
+  ST-E1-03: todo
+  ST-E1-04: todo
+  ST-E2-01: todo
+  ST-E2-02: todo
+  ST-E2-03: todo
+  ST-E2-04: todo
+  ST-E3-01: todo
+  ST-E3-02: todo
+  ST-E3-03: todo
+  ST-E3-04: todo
+  ST-E4-01: todo
+  ST-E4-02: todo
+  ST-E4-03: todo
+  ST-E4-04: todo
+  ST-E4-05: todo
+  ST-E4-06: todo
+  ST-E5-01: todo
+  ST-E5-02: todo
+  ST-E5-03: todo
+  ST-E5-04: todo
+
+milestones:
+  M-P0a: { requires_slices: [S0, S1], requires_gate: M7 }
+  M-P0b: { requires_slices: [S2] }
+  M-P0c: { requires_slices: [S3] }
+  M-P0d: { requires_slices: [S4] }
+  M-P0: { requires: [M-P0a, M-P0b, M-P0c, M-P0d] }

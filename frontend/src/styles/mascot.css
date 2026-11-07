@@ -1,0 +1,52 @@
+/* 小铁猫：概念图原始像素帧 + CSS 变换动画（不重绘） */
+.mf-mascot { border: 0; background: none; padding: 0; cursor: pointer; display: inline-block; line-height: 0; }
+.mf-mascot:focus-visible { outline: 3px solid var(--mf-primary, #74B0E1); outline-offset: 4px; border-radius: 50%; }
+.mf-mascot__sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.mfm-stage { position: relative; display: inline-block; }
+.mfm-motion { position: absolute; inset: 0; transform-origin: 50% 90%; }
+.mfm-frame { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; user-select: none; -webkit-user-drag: none; }
+.mfm-frame--in { animation: mfm-in .24s ease both; }
+/* 眨眼：闭眼覆盖层每 4.2s 出现 140ms（两次眨眼间隔不等，更自然） */
+.mfm-blink { opacity: 0; pointer-events: none; animation: mfm-blink 4.2s steps(1, end) infinite 1.1s; }
+@keyframes mfm-blink { 0%, 100% { opacity: 0; } 92% { opacity: 1; } 95.5% { opacity: 0; } }
+/* 对话气泡（概念图风格：白底、圆角、深色描边、左下小尾巴） */
+.mf-mascot { position: relative; }
+.mfm-bubble { position: absolute; right: 70%; bottom: 88%; z-index: 2; max-width: 180px; width: max-content; padding: 6px 10px; border: 2px solid #23384D; border-radius: 14px; background: #fff; color: #23384D; font-size: 13px; font-weight: 700; line-height: 1.35; box-shadow: 0 3px 0 rgba(35, 56, 77, .18); animation: mfm-pop .22s ease-out both, mfm-fade .3s ease-in 2.6s forwards; pointer-events: none; }
+@keyframes mfm-fade { to { opacity: 0; visibility: hidden; } }
+.mfm-bubble::after { content: ''; position: absolute; right: 10px; bottom: -8px; width: 12px; height: 12px; background: #fff; border-right: 2px solid #23384D; border-bottom: 2px solid #23384D; transform: rotate(45deg); }
+@keyframes mfm-pop { from { opacity: 0; transform: translateY(6px) scale(.9); } to { opacity: 1; transform: none; } }
+.mfm-frame--out { animation: mfm-out .24s ease both; }
+.mfm-shadow { position: absolute; left: 22%; right: 22%; bottom: 0; height: 7%; border-radius: 50%; background: rgba(20, 40, 60, .18); filter: blur(2px); animation: mfm-shadow 3.2s ease-in-out infinite; }
+.mfm-glow { position: absolute; inset: 8%; border-radius: 50%; opacity: 0; pointer-events: none; }
+
+/* 状态动作 */
+.mf-mascot--idle .mfm-motion { animation: mfm-breathe 3.2s ease-in-out infinite; }
+.mf-mascot--guiding .mfm-motion,
+.mf-mascot--explaining .mfm-motion,
+.mf-mascot--listening .mfm-motion { animation: mfm-float 2.6s ease-in-out infinite; }
+.mf-mascot--thinking .mfm-motion { animation: mfm-tilt 2.4s ease-in-out infinite; }
+.mf-mascot--processing .mfm-motion { animation: mfm-hover 1.6s ease-in-out infinite; }
+.mf-mascot--processing .mfm-glow { opacity: 1; background: radial-gradient(circle, rgba(64, 224, 208, .35), transparent 65%); animation: mfm-pulse 1.2s ease-in-out infinite; }
+.mf-mascot--success .mfm-motion { animation: mfm-bounce .9s cubic-bezier(.3, 1.6, .5, 1) infinite; }
+.mf-mascot--success .mfm-glow { opacity: 1; background: radial-gradient(circle, rgba(64, 240, 200, .5), transparent 65%); animation: mfm-pulse 1.4s ease-in-out infinite; }
+.mf-mascot--warning .mfm-motion { animation: mfm-shake .5s ease-in-out 3, mfm-float 2.6s ease-in-out 1.5s infinite; }
+.mf-mascot--warning .mfm-glow { opacity: 1; background: radial-gradient(circle, rgba(255, 120, 40, .4), transparent 65%); animation: mfm-pulse 1s ease-in-out infinite; }
+.mf-mascot:hover .mfm-stage { transform: scale(1.05); transition: transform .15s; }
+
+@keyframes mfm-in { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: none; } }
+@keyframes mfm-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes mfm-breathe { 0%,100% { transform: scale(1, 1); } 50% { transform: scale(1.02, .98); } }
+@keyframes mfm-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6%); } }
+@keyframes mfm-hover { 0%,100% { transform: translateY(-2%); } 50% { transform: translateY(-7%); } }
+@keyframes mfm-tilt { 0%,100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg) translateY(-3%); } }
+@keyframes mfm-bounce { 0%,100% { transform: translateY(0) scale(1); } 30% { transform: translateY(-14%) scale(1.03, .97); } 60% { transform: translateY(0) scale(1.05, .94); } }
+@keyframes mfm-shake { 0%,100% { transform: translateX(0) rotate(0); } 25% { transform: translateX(-4%) rotate(-4deg); } 75% { transform: translateX(4%) rotate(4deg); } }
+@keyframes mfm-pulse { 0%,100% { opacity: .45; transform: scale(.95); } 50% { opacity: 1; transform: scale(1.08); } }
+@keyframes mfm-shadow { 0%,100% { transform: scaleX(1); } 50% { transform: scaleX(.88); opacity: .7; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .mf-mascot .mfm-motion, .mf-mascot .mfm-glow, .mfm-shadow { animation: none !important; }
+  .mfm-frame--in, .mfm-frame--out { animation-duration: .01s; }
+  .mfm-blink { animation: none; opacity: 0; }
+  .mfm-bubble { animation: none; }
+}

@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "1.0",
+  "componentId": "dht22",
+  "units": "svg",
+  "viewBox": [
+    0,
+    0,
+    120,
+    140
+  ],
+  "image": "module.svg",
+  "pins": [
+    {
+      "id": "VCC",
+      "role": "power",
+      "x": 36,
+      "y": 132,
+      "accepts": [
+        "power_3v3",
+        "power_5v"
+      ]
+    },
+    {
+      "id": "DATA",
+      "role": "signal",
+      "x": 60,
+      "y": 132,
+      "accepts": [
+        "digital_in"
+      ],
+      "protocol": "dht-1wire"
+    },
+    {
+      "id": "GND",
+      "role": "gnd",
+      "x": 84,
+      "y": 132,
+      "accepts": [
+        "gnd"
+      ]
+    }
+  ]
+}

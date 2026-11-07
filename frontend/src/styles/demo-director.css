@@ -1,0 +1,17 @@
+.demo-dir { position: fixed; left: 16px; bottom: 16px; z-index: 70; width: 330px; background: #fff; border: 2px solid #23384D; border-radius: 16px; box-shadow: 0 8px 24px rgba(35,56,77,.18); padding: 10px 12px; font-size: 13px; color: #23384D; }
+.demo-dir header { display: flex; align-items: center; gap: 8px; }
+.demo-dir header b { flex: 1; }
+.demo-dir header button { border: 0; background: transparent; font-size: 16px; cursor: pointer; }
+.demo-dir__count { font-variant-numeric: tabular-nums; color: #5B7186; }
+.demo-dir__steps { margin: 8px 0; padding: 0; list-style: none; display: grid; gap: 2px; }
+.demo-dir__steps li { padding: 2px 6px; border-radius: 6px; color: #7A8C9C; }
+.demo-dir__steps li.is-done { color: #2E7D4F; }
+.demo-dir__steps li.is-done::after { content: ' ✓'; }
+.demo-dir__steps li.is-now { background: #E8F2FC; color: #1F5F99; font-weight: 700; }
+.demo-dir__say { margin: 6px 0; padding: 8px 10px; background: #FFF7E0; border-radius: 10px; line-height: 1.5; }
+.demo-dir__err { margin: 4px 0; color: #B3261E; }
+.demo-dir__btns { display: flex; gap: 6px; flex-wrap: wrap; }
+.demo-dir--min { width: auto; }
+@media (max-width: 900px) { .demo-dir { width: calc(100vw - 32px); } }
+.demo-dir--docked { position: static; width: auto; margin: 0 10px 6px; box-shadow: none; border-width: 1.5px; }
+.lw-course__demo:empty { display: none; }

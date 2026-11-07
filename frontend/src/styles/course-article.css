@@ -1,0 +1,76 @@
+.ca-page { min-height: 100vh; background: #E8F2FA; color: #23384D; padding-bottom: 88px; }
+.ca-top { display: flex; align-items: center; gap: 16px; padding: 12px 20px; background: #fff; border-bottom: 1px solid #C5D6E8; position: sticky; top: 0; z-index: 20; }
+.ca-back, .ca-brand { color: #2F6FA3; font-weight: 700; text-decoration: none; }
+.ca-brand { margin-right: auto; font-size: 15px; }
+.ca-layout { display: grid; grid-template-columns: 220px minmax(0, 720px); gap: 24px; max-width: 1000px; margin: 0 auto; padding: 24px 16px; }
+.ca-toc { position: sticky; top: 64px; align-self: start; background: #fff; border-radius: 16px; padding: 14px; box-shadow: 0 6px 18px rgba(30,60,90,.08); }
+.ca-toc__label { margin: 0 0 8px; font-size: 12px; font-weight: 700; color: #6B8499; }
+.ca-toc ol { list-style: none; margin: 0; padding: 0; }
+.ca-toc button { width: 100%; text-align: left; display: flex; gap: 8px; align-items: center; border: 0; background: none; padding: 8px; border-radius: 10px; font: inherit; cursor: pointer; color: #23384D; }
+.ca-toc button span { width: 22px; height: 22px; border-radius: 50%; background: #EAF5FD; display: grid; place-items: center; font-size: 12px; font-weight: 700; color: #2F6FA3; flex-shrink: 0; }
+.ca-toc button.is-on { background: #EAF5FD; font-weight: 700; }
+.ca-tier-pick { margin-top: 12px; padding-top: 10px; border-top: 1px solid #E0EAF3; font-size: 12px; }
+.ca-tier-pick > div { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.ca-main { background: #fff; border-radius: 18px; padding: 28px 32px 40px; box-shadow: 0 8px 24px rgba(30,60,90,.08); }
+.ca-kicker { margin: 0; font-size: 12px; font-weight: 700; color: #6B8499; letter-spacing: .04em; }
+.ca-hero h1 { margin: 6px 0 8px; font-size: 28px; }
+.ca-sub { margin: 0 0 20px; font-size: 16px; color: #3D5A73; }
+.ca-chapter { margin: 22px 0; scroll-margin-top: 80px; }
+.ca-chapter h2 { margin: 0 0 8px; font-size: 18px; }
+.ca-chapter p { margin: 0; line-height: 1.7; font-size: 15px; }
+.ca-video, .ca-resources { margin-top: 28px; padding-top: 18px; border-top: 1px solid #E0EAF3; }
+.ca-bilibili { position: relative; width: 100%; aspect-ratio: 16/9; background: #0E1621; border-radius: 12px; overflow: hidden; margin: 10px 0; }
+.ca-bilibili__ph { width: 100%; height: 100%; display: grid; place-content: center; gap: 6px; text-align: center; color: #C8D6E5; padding: 16px; }
+.ca-bilibili__ph strong { font-size: 18px; color: #fff; }
+.ca-bilibili__ph code { font-size: 12px; opacity: .8; }
+.ca-muted { font-size: 13px; color: #6B8499; margin: 6px 0 0; }
+.ca-resources ul { list-style: none; margin: 10px 0 0; padding: 0; }
+.ca-resources li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 12px; padding: 10px 0; border-bottom: 1px solid #EEF3F8; }
+.ca-res-kind { font-size: 11px; font-weight: 800; color: #fff; background: #2F6FA3; border-radius: 6px; padding: 2px 6px; }
+.ca-resources a { font-weight: 700; color: #2F6FA3; }
+.ca-resources small { color: #6B8499; width: 100%; }
+.ca-sticky { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 20px; background: #fff; border-top: 2px solid #74B0E1; box-shadow: 0 -8px 24px rgba(30,60,90,.12); }
+.ca-sticky strong { display: block; font-size: 15px; }
+.ca-sticky span { font-size: 13px; color: #6B8499; }
+.ca-cta { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 28px; border-radius: 999px; background: #F4C65C; color: #1A2B3C; font-weight: 800; text-decoration: none; box-shadow: 0 4px 12px rgba(244,198,92,.45); }
+.ca-cta:hover { filter: brightness(.97); }
+@media (max-width: 800px) {
+  .ca-layout { grid-template-columns: 1fr; }
+  .ca-toc { position: static; }
+}
+
+/* —— 图文增强 —— */
+.ca-cover { position: relative; max-width: 1000px; margin: 16px auto 0; border-radius: 18px; overflow: hidden; aspect-ratio: 21/9; background: #0E1621; }
+.ca-cover img { width: 100%; height: 100%; object-fit: cover; opacity: .85; }
+.ca-cover__txt { position: absolute; inset: auto 0 0 0; padding: 28px 32px; background: linear-gradient(transparent, rgba(8,20,36,.88)); color: #fff; }
+.ca-cover__txt .ca-kicker { color: #A8C8E0; }
+.ca-cover__txt h1 { margin: 4px 0 6px; font-size: 28px; }
+.ca-cover__txt .ca-sub { color: #E2EEF8; margin: 0; }
+.ca-chapter__title { margin: 0 0 12px; font-size: 20px; border-left: 4px solid #74B0E1; padding-left: 10px; }
+.ca-block-h { margin: 14px 0 8px; font-size: 16px; }
+.ca-block-p { margin: 0 0 12px; line-height: 1.75; font-size: 15px; }
+.ca-figure { margin: 14px 0; background: #F4F8FC; border-radius: 14px; overflow: hidden; border: 1px solid #D7E4F0; }
+.ca-figure img { display: block; width: 100%; max-height: 360px; object-fit: contain; background: #fff; padding: 12px; }
+.ca-figure figcaption { padding: 8px 12px 10px; font-size: 13px; color: #5A738A; text-align: center; }
+.ca-figure--card { margin: 0; }
+.ca-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin: 14px 0; }
+.ca-gallery .ca-figure img { max-height: 160px; }
+.ca-callout { display: flex; gap: 12px; align-items: flex-start; margin: 14px 0; padding: 12px 14px; border-radius: 12px; border: 1px solid #C5D6E8; background: #F0F7FC; }
+.ca-callout p { margin: 0; font-size: 14px; line-height: 1.6; }
+.ca-callout__tag { flex-shrink: 0; font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 999px; background: #74B0E1; color: #fff; }
+.ca-callout--warn { background: #FFF6E8; border-color: #F0C78A; }
+.ca-callout--warn .ca-callout__tag { background: #E8A23A; }
+.ca-callout--info { background: #EEF6F0; border-color: #A8D0B4; }
+.ca-callout--info .ca-callout__tag { background: #3D9A5F; }
+.ca-bilibili__ph { width: 100%; height: 100%; display: grid; place-content: center; gap: 6px; text-align: center; color: #C8D6E5; padding: 16px; }
+.ca-bilibili__ph strong { font-size: 18px; color: #fff; }
+.ca-bilibili__ph code { font-size: 12px; opacity: .8; }
+
+/* 学生端渲染 TipTap HTML */
+.ca-prose { font-size: 15px; line-height: 1.75; }
+.ca-prose h2 { scroll-margin-top: 80px; margin: 22px 0 12px; font-size: 20px; border-left: 4px solid #74B0E1; padding-left: 10px; }
+.ca-prose h3 { margin: 14px 0 8px; font-size: 16px; }
+.ca-prose p { margin: 0 0 12px; }
+.ca-prose ul, .ca-prose ol { padding-left: 1.4em; margin: 0 0 12px; }
+.ca-prose a { color: #2F6FA3; font-weight: 600; }
+.ca-prose img { max-width: 100%; height: auto; }

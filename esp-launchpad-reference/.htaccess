@@ -1,0 +1,40 @@
+# 禁用缓存 - 用于开发环境
+<IfModule mod_headers.c>
+    # 对所有文件禁用缓存
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+</IfModule>
+
+# 针对特定文件类型的缓存控制
+<IfModule mod_expires.c>
+    ExpiresActive Off
+</IfModule>
+
+# 针对HTML文件
+<FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+</FilesMatch>
+
+# 针对JavaScript文件
+<FilesMatch "\.(js)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"  
+    Header set Expires "0"
+</FilesMatch>
+
+# 针对CSS文件
+<FilesMatch "\.(css)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+</FilesMatch>
+
+# 针对JSON文件
+<FilesMatch "\.(json)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+</FilesMatch>

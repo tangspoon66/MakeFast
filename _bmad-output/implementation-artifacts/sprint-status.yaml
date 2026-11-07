@@ -1,0 +1,105 @@
+project: makefast
+plan_version: 1
+last_updated: 2026-09-28
+status_values: [planned, in-progress, review, done, blocked]
+sprints:
+  - id: sprint-0
+    goal: "BMAD planning baseline and safe spike inventory"
+    stories:
+      - id: ST-000
+        title: "Document and baseline the product"
+        status: done
+      - id: ST-001
+        title: "Reconcile exploratory workbench spike"
+        status: done
+  - id: sprint-1
+    goal: "Learner identity, owned projects, and dashboard foundation"
+    stories:
+      - id: ST-101
+        title: "Implement learner registration and session"
+        status: done
+        depends_on: [ST-000]
+      - id: ST-102
+        title: "Add account/profile UI"
+        status: done
+        depends_on: [ST-101]
+      - id: ST-201
+        title: "Create owned project and dashboard APIs"
+        status: done
+        depends_on: [ST-101]
+      - id: ST-202
+        title: "Build learning overview and profile rewards surfaces"
+        status: done
+        depends_on: [ST-102, ST-201]
+  - id: sprint-2
+    goal: "Structured course schema and three-zone workbench"
+    stories:
+      - id: ST-301
+        title: "Define and validate course step schema"
+        status: done
+        depends_on: [ST-201]
+      - id: ST-302
+        title: "Build admin course step editor and publish flow"
+        status: done
+        depends_on: [ST-301]
+      - id: ST-401
+        title: "Implement data-driven three-zone workbench shell"
+        status: done
+        depends_on: [ST-001, ST-301]
+      - id: ST-402
+        title: "Integrate compile/flash/serial into debug panel"
+        status: review
+        depends_on: [ST-401]
+      - id: ST-403
+        title: "Implement structured wiring viewer and validation"
+        status: blocked
+        depends_on: [ST-301]
+  - id: sprint-3
+    goal: "Editor boundaries and first Agent guidance experience"
+    stories:
+      - id: ST-501
+        title: "Make editor source authoritative and conversion-safe"
+        status: review
+        depends_on: [ST-401]
+      - id: ST-502
+        title: "Add static Agent IP states and semantic target overlay"
+        status: review
+        depends_on: [ST-401]
+      - id: ST-503
+        title: "Add contextual Agent ask"
+        status: done
+        depends_on: [ST-101, ST-201, ST-301, ST-502]
+  - id: sprint-4
+    goal: "Rewards, first verified course, and Agent proposals"
+    stories:
+      - id: ST-203
+        title: "Add progress event projection"
+        status: done
+        depends_on: [ST-201, ST-301]
+      - id: ST-601
+        title: "Implement idempotent points ledger and badge evaluator"
+        status: done
+        depends_on: [ST-203]
+      - id: ST-303
+        title: "Author and hardware-verify the first ESP32 course"
+        status: blocked
+        depends_on: [ST-301, ST-402, ST-403]
+      - id: ST-504
+        title: "Add Agent proposal preview/apply/undo"
+        status: done
+        depends_on: [ST-501, ST-503]
+      - id: ST-602
+        title: "Surface rewards in flow and profile"
+        status: done
+        depends_on: [ST-601, ST-202]
+  - id: sprint-5
+    goal: "Pilot readiness, verification, and rollback"
+    stories:
+      - id: ST-701
+        title: "Add contract/E2E/accessibility regression suite"
+        status: review
+        depends_on: [ST-303, ST-504, ST-602]
+      - id: ST-702
+        title: "Pilot gate and migration/rollback runbook"
+        status: done
+        depends_on: [ST-701]

@@ -1,0 +1,31 @@
+/* MakeFast 设计令牌（冻结色板：#74B0E1 / #F4C65C / #C0E2F9，亮色儿童向） */
+:root {
+  --mf-primary: #74B0E1;
+  --mf-primary-strong: #4A90C8;
+  --mf-primary-ink: #1F5E8E;
+  --mf-accent: #F4C65C;
+  --mf-accent-strong: #E5AD2E;
+  --mf-surface: #C0E2F9;
+  --mf-surface-soft: #EAF5FD;
+  --mf-bg: #F5FAFE;
+  --mf-card: #FFFFFF;
+  --mf-ink: #23384D;
+  --mf-ink-soft: #5B7187;
+  --mf-line: #D6E8F5;
+  --mf-success: #3FB37F;
+  --mf-success-soft: #E3F6EC;
+  --mf-warning: #E5A100;
+  --mf-warning-soft: #FFF5D6;
+  --mf-error: #E2595B;
+  --mf-error-soft: #FDE8E8;
+
+  --mf-radius-sm: 10px;
+  --mf-radius: 16px;
+  --mf-radius-lg: 24px;
+  --mf-radius-pill: 999px;
+  --mf-shadow: 0 6px 20px rgba(74, 144, 200, 0.14);
+  --mf-shadow-sm: 0 2px 8px rgba(74, 144, 200, 0.12);
+
+  --mf-font: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans SC', 'Segoe UI', sans-serif;
+  --mf-mono: ui-monospace, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+}

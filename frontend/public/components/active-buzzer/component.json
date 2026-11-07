@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0",
+  "id": "active_buzzer",
+  "name": "有源蜂鸣器模块",
+  "category": "actuator",
+  "logicVoltage": [
+    3.3,
+    5
+  ],
+  "capabilities": [
+    "beep"
+  ],
+  "images": {
+    "illustration": "module.svg"
+  },
+  "pinmap": "pinmap.json",
+  "specs": {
+    "driveLevel": "high",
+    "note": "有源蜂鸣器：给高电平就响，不需要 PWM；部分模块为低电平触发，请以实物丝印为准。"
+  },
+  "blocks": [
+    "mf_buzzer_on",
+    "mf_buzzer_off",
+    "mf_buzzer_beep"
+  ],
+  "license": "MakeFast 自绘（自有），不含第三方 GPL 资源。"
+}

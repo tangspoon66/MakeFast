@@ -1,0 +1,13 @@
+[
+  {
+    "board_id": "ceshi ",
+    "name": "ceshi",
+    "fqbn": "ceshi",
+    "description": "",
+    "platform": "esp32",
+    "flashable": true,
+    "bootloader_addr": 0,
+    "output_format": "bin",
+    "chip_family": "ceshi"
+  }
+]

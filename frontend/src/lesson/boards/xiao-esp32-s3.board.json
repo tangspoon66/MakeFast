@@ -1,0 +1,262 @@
+{
+  "schemaVersion": "1.0",
+  "id": "xiao-esp32-s3",
+  "name": "Seeed Studio XIAO ESP32-S3",
+  "vendor": "Seeed Studio",
+  "mcu": "ESP32-S3",
+  "logicVoltage": 3.3,
+  "notes": "MakeFast 自建板级描述，引脚数据来自 Seeed 官方引脚图（XIAO ESP32S3 pinout）。不复制第三方 GPL 资源。",
+  "pins": [
+    {
+      "id": "3V3",
+      "labels": [
+        "3V3",
+        "3.3V"
+      ],
+      "capabilities": [
+        "power_3v3"
+      ],
+      "side": "right"
+    },
+    {
+      "id": "GND",
+      "labels": [
+        "GND"
+      ],
+      "capabilities": [
+        "gnd"
+      ],
+      "side": "right"
+    },
+    {
+      "id": "5V",
+      "labels": [
+        "5V",
+        "VBUS"
+      ],
+      "capabilities": [
+        "power_5v"
+      ],
+      "side": "right"
+    },
+    {
+      "id": "D0",
+      "gpio": 1,
+      "labels": [
+        "D0",
+        "A0",
+        "GPIO1"
+      ],
+      "capabilities": [
+        "digital_in",
+        "digital_out",
+        "adc",
+        "pwm"
+      ],
+      "side": "left"
+    },
+    {
+      "id": "D1",
+      "gpio": 2,
+      "labels": [
+        "D1",
+        "A1",
+        "GPIO2"
+      ],
+      "capabilities": [
+        "digital_in",
+        "digital_out",
+        "adc",
+        "pwm"
+      ],
+      "side": "left"
+    },
+    {
+      "id": "D2",
+      "gpio": 3,
+      "labels": [
+        "D2",
+        "A2",
+        "GPIO3"
+      ],
+      "capabilities": [
+        "digital_in",
+        "digital_out",
+        "adc",
+        "pwm"
+      ],
+      "side": "left"
+    },
+    {
+      "id": "D3",
+      "gpio": 4,
+      "labels": [
+        "D3",
+        "A3",
+        "GPIO4"
+      ],
+      "capabilities": [
+        "digital_in",
+        "digital_out",
+        "adc",
+        "pwm"
+      ],
+      "side": "left"
+    },
+    {
+      "id": "D4",
+      "gpio": 5,
+      "labels": [
+        "D4",
+        "A4",
+        "SDA",
+        "GPIO5"
+      ],
+      "capabilities": [
+        "digital_in",
+        "digital_out",
+        "adc",
+        "pwm",
+        "i2c_sda"
+      ],
+      "side": "left"
+    },
+    {
+      "id": "D5",
+      "gpio": 6,
+      "labels": [
+        "D5",
+        "A5",
+        "SCL",
+        "GPIO6"
+      ],
+      "capabilities": [
+        "digital_in",
+        "digital_out",
+        "adc",
+        "pwm",
+        "i2c_scl"
+      ],
+      "side": "left"
+    },
+    {
+      "id": "D6",
+      "gpio": 43,
+      "labels": [
+        "D6",
+        "TX",
+        "GPIO43"
+      ],
+      "capabilities": [
+        "digital_in",
+        "digital_out",
+        "pwm",
+        "uart_tx"
+      ],
+      "side": "left"
+    },
+    {
+      "id": "D7",
+      "gpio": 44,
+      "labels": [
+        "D7",
+        "RX",
+        "GPIO44"
+      ],
+      "capabilities": [
+        "digital_in",
+        "digital_out",
+        "pwm",
+        "uart_rx"
+      ],
+      "side": "right"
+    },
+    {
+      "id": "D8",
+      "gpio": 7,
+      "labels": [
+        "D8",
+        "A8",
+        "SCK",
+        "GPIO7"
+      ],
+      "capabilities": [
+        "digital_in",
+        "digital_out",
+        "adc",
+        "pwm",
+        "spi_sck"
+      ],
+      "side": "right"
+    },
+    {
+      "id": "D9",
+      "gpio": 8,
+      "labels": [
+        "D9",
+        "A9",
+        "MISO",
+        "GPIO8"
+      ],
+      "capabilities": [
+        "digital_in",
+        "digital_out",
+        "adc",
+        "pwm",
+        "spi_miso"
+      ],
+      "side": "right"
+    },
+    {
+      "id": "D10",
+      "gpio": 9,
+      "labels": [
+        "D10",
+        "A10",
+        "MOSI",
+        "GPIO9"
+      ],
+      "capabilities": [
+        "digital_in",
+        "digital_out",
+        "adc",
+        "pwm",
+        "spi_mosi"
+      ],
+      "side": "right"
+    }
+  ],
+  "constraints": [
+    {
+      "pin": "D2",
+      "kind": "strapping",
+      "severity": "warning",
+      "childMessage": "D2（GPIO3）是芯片启动时会看的“开机脚”，接传感器有时会让小板启动不正常，换到 D0 或 D1 更稳。"
+    },
+    {
+      "pin": "D6",
+      "kind": "uart",
+      "severity": "warning",
+      "childMessage": "D6 是串口发送脚（TX），接别的元件可能和串口打架，建议换一个脚。"
+    },
+    {
+      "pin": "D7",
+      "kind": "uart",
+      "severity": "warning",
+      "childMessage": "D7 是串口接收脚（RX），接别的元件可能和串口打架，建议换一个脚。"
+    }
+  ],
+  "toolchain": {
+    "backendBoardId": "esp32s3",
+    "fqbn": "esp32:esp32:esp32s3:CDCOnBoot=cdc",
+    "uploadProtocol": "esptool",
+    "baudRate": 115200
+  },
+  "package": {
+    "manifest": "/boards/xiao-esp32-s3/board.json",
+    "pinmap": "/boards/xiao-esp32-s3/pinmap.json",
+    "illustration": "/boards/xiao-esp32-s3/board.svg",
+    "photo": "/boards/xiao-esp32-s3/photo.webp",
+    "cover": "/boards/xiao-esp32-s3/cover.webp"
+  }
+}

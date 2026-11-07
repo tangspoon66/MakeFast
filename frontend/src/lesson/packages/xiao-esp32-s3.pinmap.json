@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "1.0",
+  "boardId": "xiao-esp32-s3",
+  "view": "top",
+  "units": "svg",
+  "viewBox": [
+    0,
+    0,
+    210,
+    250
+  ],
+  "image": "board.svg",
+  "note": "坐标为 board.svg 视图坐标（USB 朝上，正面），引脚间距 2.54mm=25.4 单位。MakeFast 自绘，依据 Seeed 官方引脚图。",
+  "pins": [
+    {
+      "id": "D0",
+      "side": "left",
+      "index": 1,
+      "x": 14,
+      "y": 70.0,
+      "gpio": 1
+    },
+    {
+      "id": "D1",
+      "side": "left",
+      "index": 2,
+      "x": 14,
+      "y": 95.4,
+      "gpio": 2
+    },
+    {
+      "id": "D2",
+      "side": "left",
+      "index": 3,
+      "x": 14,
+      "y": 120.8,
+      "gpio": 3
+    },
+    {
+      "id": "D3",
+      "side": "left",
+      "index": 4,
+      "x": 14,
+      "y": 146.2,
+      "gpio": 4
+    },
+    {
+      "id": "D4",
+      "side": "left",
+      "index": 5,
+      "x": 14,
+      "y": 171.6,
+      "gpio": 5
+    },
+    {
+      "id": "D5",
+      "side": "left",
+      "index": 6,
+      "x": 14,
+      "y": 197.0,
+      "gpio": 6
+    },
+    {
+      "id": "D6",
+      "side": "left",
+      "index": 7,
+      "x": 14,
+      "y": 222.4,
+      "gpio": 43
+    },
+    {
+      "id": "5V",
+      "side": "right",
+      "index": 14,
+      "x": 196,
+      "y": 70.0
+    },
+    {
+      "id": "GND",
+      "side": "right",
+      "index": 13,
+      "x": 196,
+      "y": 95.4
+    },
+    {
+      "id": "3V3",
+      "side": "right",
+      "index": 12,
+      "x": 196,
+      "y": 120.8
+    },
+    {
+      "id": "D10",
+      "side": "right",
+      "index": 11,
+      "x": 196,
+      "y": 146.2,
+      "gpio": 9
+    },
+    {
+      "id": "D9",
+      "side": "right",
+      "index": 10,
+      "x": 196,
+      "y": 171.6,
+      "gpio": 8
+    },
+    {
+      "id": "D8",
+      "side": "right",
+      "index": 9,
+      "x": 196,
+      "y": 197.0,
+      "gpio": 7
+    },
+    {
+      "id": "D7",
+      "side": "right",
+      "index": 8,
+      "x": 196,
+      "y": 222.4,
+      "gpio": 44
+    }
+  ]
+}

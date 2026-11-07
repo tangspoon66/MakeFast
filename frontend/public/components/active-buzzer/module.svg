@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 140" width="120" height="140" role="img" aria-label="有源蜂鸣器模块">
+<rect x="14" y="56" width="92" height="64" rx="8" fill="#2E7D4F" stroke="#1E5535" stroke-width="2"/>
+<circle cx="60" cy="50" r="36" fill="#222A31" stroke="#0F1418" stroke-width="2"/>
+<circle cx="60" cy="50" r="24" fill="#2F3A44"/><circle cx="60" cy="50" r="5" fill="#0F1418"/>
+<text x="60" y="112" text-anchor="middle" font-family="Arial" font-size="9" font-weight="700" fill="#fff">BUZZER</text>
+<rect x="33" y="118" width="6" height="18" fill="#D9A93A"/><text x="36" y="102" text-anchor="middle" font-family="Arial" font-size="7" fill="#DDF5E6">S</text><rect x="57" y="118" width="6" height="18" fill="#D9A93A"/><text x="60" y="102" text-anchor="middle" font-family="Arial" font-size="7" fill="#DDF5E6">VCC</text><rect x="81" y="118" width="6" height="18" fill="#D9A93A"/><text x="84" y="102" text-anchor="middle" font-family="Arial" font-size="7" fill="#DDF5E6">GND</text></svg>

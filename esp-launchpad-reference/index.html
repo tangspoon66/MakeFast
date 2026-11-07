@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="h-100">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="ESP Launchpad - 在线烧录工具" />
+    <title>ESP Launchpad - 在线烧录工具</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    
+    <!-- Modern CSS Framework -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Custom Modern Styles -->
+    <link href="css/modern-styles.css" rel="stylesheet" />
+    <link href="css/xterm.css" rel="stylesheet" />
+</head>
+<body class="modern-body">
+    <!-- Header -->
+    <header class="modern-header">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                    <img src="assets/esp-logo.png" alt="ESP Logo" class="header-logo me-3">
+                    <div>
+                        <h1 class="header-title mb-0">ESP Launchpad</h1>
+                        <p class="header-subtitle mb-0">现代化在线烧录工具</p>
+                    </div>
+                </div>
+                
+                <!-- Enhanced Connection Status -->
+                <div class="connection-status" id="connectionStatus">
+                    <div class="device-status-panel">
+                        <div class="d-flex align-items-center">
+                            <div class="status-indicator me-3" id="statusIndicator">
+                                <i class="fas fa-circle status-dot"></i>
+                                <span class="status-text" id="statusText">未连接</span>
+                            </div>
+                            <div class="device-info-mini d-none" id="deviceInfoMini">
+                                <small class="text-muted me-2" id="chipInfoMini">-</small>
+                                <small class="text-muted" id="macAddressMini">-</small>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline-primary btn-sm ms-2" id="connectToggleBtn">
+                            <i class="fas fa-plug me-1"></i>
+                            <span id="connectBtnText">连接设备</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container-fluid px-4">
+            <!-- Status Alert -->
+            <div class="alert alert-info alert-dismissible fade show modern-alert compact-alert" role="alert" id="statusAlert">
+                <i class="fas fa-info-circle me-2"></i>
+                <span id="alertMessage">请连接您的ESP设备到 USB端口，然后点击"连接设备"按钮开始使用。</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+
+            <div class="row g-3">
+                <!-- Left Panel - Firmware & Settings -->
+                <div class="col-lg-6">
+                    <!-- Firmware Selection Card -->
+                    <div class="modern-card compact">
+                        <div class="card-header py-2">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h6 class="card-title mb-0">
+                                    <i class="fas fa-file-code me-2"></i>
+                                    固件选择
+                                </h6>
+                                <div class="btn-group btn-group-sm" role="group" id="firmwareModeToggle">
+                                    <input type="radio" class="btn-check" name="firmwareMode" id="quickStartMode" checked>
+                                    <label class="btn btn-outline-primary" for="quickStartMode">快速开始</label>
+                                    
+                                    <input type="radio" class="btn-check" name="firmwareMode" id="diyMode">
+                                    <label class="btn btn-outline-primary" for="diyMode">自定义</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body py-3">
+                            <!-- Quick Start Mode -->
+                            <div id="quickStartPanel">
+                                <div class="mb-2">
+                                    <label class="form-label form-label-sm">选择应用</label>
+                                    <select class="form-select form-select-sm" id="applicationSelect">
+                                        <option value="">正在加载应用列表...</option>
+                                    </select>
+                                </div>
+                                
+                                <!-- Application Info Display -->
+                                <div class="mb-2" id="appInfoSection" style="display: none;">
+                                    <div class="card border-0 bg-light">
+                                        <div class="card-body py-2 px-3">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <i class="fas fa-cloud-download-alt text-primary me-2"></i>
+                                                    <div>
+                                                        <div class="fw-medium small" id="appName">-</div>
+                                                        <small class="text-muted">Flash地址: <span id="appAddress">-</span></small>
+                                                    </div>
+                                                </div>
+                                                <div class="text-end">
+                                                    <small class="text-muted">远程固件</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- DIY Mode -->
+                            <div id="diyPanel" style="display: none;">
+                                <div class="alert alert-info border-0 mb-2 py-2">
+                                    <i class="fas fa-info-circle me-1"></i>
+                                    <small>选择一个固件文件并设置Flash地址</small>
+                                </div>
+                                
+                                <!-- File Upload -->
+                                <div class="mb-2">
+                                    <label class="form-label form-label-sm d-flex align-items-center justify-content-between">
+                                        <span>固件文件</span>
+                                        <small class="text-muted">支持 .bin 格式</small>
+                                    </label>
+                                    <div class="file-upload-area compact" id="fileUploadArea">
+                                        <div class="upload-content">
+                                            <i class="fas fa-cloud-upload-alt upload-icon-sm"></i>
+                                            <p class="upload-text-sm mb-1">拖拽文件或点击选择</p>
+                                            <small class="text-muted">选择单个 .bin 文件</small>
+                                        </div>
+                                        <input type="file" class="file-input" id="firmwareFileInput" accept=".bin">
+                                    </div>
+                                </div>
+
+                                <!-- Flash Address -->
+                                <div class="mb-2" id="flashAddressSection" style="display: none;">
+                                    <label class="form-label form-label-sm">Flash 地址</label>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text">0x</span>
+                                        <input type="text" class="form-control" id="flashAddressInput" placeholder="10000" value="10000">
+                                        <div class="input-group-text">
+                                            <div class="dropdown">
+                                                <button class="btn btn-sm btn-link dropdown-toggle p-0" type="button" data-bs-toggle="dropdown">
+                                                    <i class="fas fa-list"></i>
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end">
+                                                    <li><a class="dropdown-item small" href="#" onclick="setFlashAddress('0')">0x0 (Bootloader)</a></li>
+                                                    <li><a class="dropdown-item small" href="#" onclick="setFlashAddress('8000')">0x8000 (分区表)</a></li>
+                                                    <li><a class="dropdown-item small" href="#" onclick="setFlashAddress('10000')">0x10000 (应用程序)</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- File Info Display -->
+                                <div class="mb-0" id="fileInfoSection" style="display: none;">
+                                    <div class="card border-0 bg-light">
+                                        <div class="card-body py-2 px-3">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <i class="fas fa-file-alt text-primary me-2"></i>
+                                                    <div>
+                                                        <div class="fw-medium small" id="fileName">-</div>
+                                                        <small class="text-muted" id="fileSize">-</small>
+                                                    </div>
+                                                </div>
+                                                <button type="button" class="btn btn-sm btn-outline-danger" id="removeFileBtn">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Flash Settings Card -->
+                    <div class="modern-card compact">
+                        <div class="card-header py-2">
+                            <h6 class="card-title mb-0">
+                                <i class="fas fa-cog me-2"></i>
+                                烧录设置
+                            </h6>
+                        </div>
+                        <div class="card-body py-3">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="form-label form-label-sm">烧录波特率</label>
+                                    <select class="form-select form-select-sm" id="flashBaudrateSelect">
+                                        <option value="921600">921600</option>
+                                        <option value="460800">460800</option>
+                                        <option value="230400">230400</option>
+                                        <option value="115200" selected>115200</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label form-label-sm">控制台波特率</label>
+                                    <select class="form-select form-select-sm" id="consoleBaudrateSelect">
+                                        <option value="115200" selected>115200</option>
+                                        <option value="74880">74880</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Flash Button -->
+                    <div class="d-grid mb-3">
+                        <button class="btn btn-primary flash-button" id="flashButton" disabled>
+                            <i class="fas fa-download me-2"></i>
+                            <span id="flashButtonText">开始烧录</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Panel - Console & Progress -->
+                <div class="col-lg-6">
+                    <!-- Progress Card -->
+                    <div class="modern-card compact" id="progressCard" style="display: none;">
+                        <div class="card-header py-2">
+                            <h6 class="card-title mb-0">
+                                <i class="fas fa-tasks me-2"></i>
+                                烧录进度
+                            </h6>
+                        </div>
+                        <div class="card-body py-3">
+                            <div class="progress-info">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="progress-label small" id="progressLabel">准备中...</span>
+                                    <span class="progress-percentage small" id="progressPercentage">0%</span>
+                                </div>
+                                <div class="progress mb-2" style="height: 6px;">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                                         role="progressbar" 
+                                         style="width: 0%" 
+                                         id="progressBar">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Console Card -->
+                    <div class="modern-card console-card compact">
+                        <div class="card-header py-2">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h6 class="card-title mb-0">
+                                    <i class="fas fa-terminal me-2"></i>
+                                    控制台
+                                </h6>
+                                <div class="console-controls">
+                                    <button class="btn btn-outline-secondary btn-sm" id="clearConsoleBtn">
+                                        <i class="fas fa-eraser me-1"></i>
+                                        清空
+                                    </button>
+                                    <button class="btn btn-outline-primary btn-sm" id="resetDeviceBtn" disabled>
+                                        <i class="fas fa-redo me-1"></i>
+                                        重置
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="console-container compact" id="consoleContainer">
+                                <div class="console-output" id="consoleOutput">
+                                    <div class="console-line">
+                                        <span class="console-timestamp">[00:00:00]</span>
+                                        <span class="console-text">ESP Launchpad 控制台已就绪</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QR Code Card (Hidden by default) -->
+                    <div class="modern-card" id="qrCodeCard" style="display: none;">
+                        <div class="card-header">
+                            <h5 class="card-title">
+                                <i class="fas fa-qrcode me-2"></i>
+                                配置二维码
+                            </h5>
+                        </div>
+                        <div class="card-body text-center">
+                            <div class="qr-codes-container" id="qrCodesContainer">
+                                <!-- QR codes will be generated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-check-circle text-success me-2"></i>
+                        烧录完成
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="success-content">
+                        <p class="lead">固件烧录已成功完成！</p>
+                        <p>设备已自动重置并退出下载模式。应用程序现在应该正在运行。</p>
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            设备现在应该正在运行新的应用程序。如果设备没有自动启动，请点击"重置设备"按钮。
+                        </div>
+                        <div id="appDownloadLinks" class="mt-3">
+                            <!-- App download links will be added here -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="resetAfterFlashBtn">重置设备</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div class="modal fade" id="errorModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-exclamation-triangle text-danger me-2"></i>
+                        错误
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="errorMessage"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Browser Support Check -->
+    <div id="browserSupportModal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-exclamation-triangle text-warning me-2"></i>
+                        浏览器不支持
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <p>很抱歉，您的浏览器不支持 WebUSB 功能。</p>
+                    <p>ESP Launchpad 需要 WebUSB 来与设备通信。请使用以下浏览器：</p>
+                    <ul>
+                        <li>Google Chrome (推荐)</li>
+                        <li>Microsoft Edge</li>
+                        <li>Opera</li>
+                    </ul>
+                    <p class="text-muted small">Safari 和 Firefox 目前不支持 WebUSB。</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">了解</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <!-- Other third party libraries -->
+    <script src="js/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.js"></script>
+    
+    <!-- ESP Tool Library - 作为ES6模块加载 -->
+    <script type="module" src="js/bundle.js"></script>
+    
+    <!-- Our application - 作为ES6模块加载 -->
+    <script type="module" src="js/modern-app.js?v=1.0"></script>
+    
+    <!-- Cache Busting Script -->
+    <script>
+        // 缓存破坏函数 - 为本地资源添加时间戳
+        (function() {
+            const timestamp = Date.now();
+            
+            // 处理CSS文件
+            const cssLinks = document.querySelectorAll('link[rel="stylesheet"][href^="css/"]');
+            cssLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (!href.includes('?')) {
+                    link.setAttribute('href', href + '?v=' + timestamp);
+                }
+            });
+            
+            // 处理本地JS文件
+            const localScripts = document.querySelectorAll('script[src^="js/"]');
+            localScripts.forEach(script => {
+                const src = script.getAttribute('src');
+                if (!src.includes('?')) {
+                    script.setAttribute('src', src + '?v=' + timestamp);
+                }
+            });
+        })();
+        
+        // 移动端 viewport 高度修复
+        function setViewportHeight() {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+        
+        // 初始设置
+        setViewportHeight();
+        
+        // 监听窗口大小变化和方向变化
+        window.addEventListener('resize', setViewportHeight);
+        window.addEventListener('orientationchange', () => {
+            setTimeout(setViewportHeight, 100);
+        });
+    </script>
+    
+    <!-- Flash address helper function -->
+    <script>
+        function setFlashAddress(address) {
+            const input = document.getElementById('flashAddressInput');
+            if (input) {
+                input.value = address;
+                // 触发 input 事件以便其他代码能响应
+                input.dispatchEvent(new Event('input', { bubbles: true }));
+            }
+        }
+    </script>
+</body>
+</html>

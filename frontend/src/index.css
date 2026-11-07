@@ -1,0 +1,22 @@
+@import "tailwindcss";
+@import "./styles/tokens.css";
+
+body {
+  margin: 0;
+  background: #edf6fb;
+  color: #0f172a;
+  /* 系统中文无衬线；等宽字体只用于代码与串口 */
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans SC', 'Segoe UI',
+    'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code, pre, kbd {
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, 'Liberation Mono',
+    monospace;
+}
+
+/* 键盘可达：所有可聚焦元素都有清楚的焦点框（R11 a11y） */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible { outline: 3px solid #2F6FA3; outline-offset: 2px; }
